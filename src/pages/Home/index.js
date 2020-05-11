@@ -6,9 +6,9 @@ import Button from '@material-ui/core/Button';
 import logo from '../../assets/Lada.svg'
 import imgHome from '../../assets/home1.png'
 
-import './style.css'
+import './style.css';
 
-const Home = () => (
+const Home = ({ history }) => (
   <div className="home-container">
     <Grid container spacing={12}>
       <Grid item md={6}>
@@ -25,11 +25,10 @@ const Home = () => (
               do mercado da Programação
             </p>
 
-            <Button variant="contained" color="primary">
+            <Button className="home-btn" onClick={() => history.push('/login')} variant="contained" color="primary">
               Entrar
             </Button>
 
-            {/* <button type="submit" formaction="http://localhost:3000/">Entrar</button> */}
           </div>
 
         </div>
@@ -48,12 +47,11 @@ const Home = () => (
               Traga sua empresa pro Lada
             </p>
 
-            <a href="">Cadastre-se</a>
+            <a href="/login">Cadastre-se</a>
           </div>
 
         </div>
       </Grid>
-
     </Grid>
   </div>
 );

@@ -1,13 +1,15 @@
 import React from 'react';
 
-import './global.css';
+import Theme from './Theme';
 
 import Routes from './routes'
 
 const App = () => (
-  <div className="App">
-    <Routes />
-  </div>
+  <Theme>
+    <div className="App">
+      <Routes />
+    </div>
+  </Theme>
 );
 
 export default App;
