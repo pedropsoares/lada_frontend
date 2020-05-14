@@ -5,7 +5,7 @@ import PersistentDrawerLeft from '../../../components/PersistentDrawerLeft'
 
 import './style.css';
 
-const HomeCompany = ({ history }) => (
+const HomeRecruiter = ({ history }) => (
   <div className="home-container">
 
     <PersistentDrawerLeft
@@ -13,9 +13,9 @@ const HomeCompany = ({ history }) => (
 
       <Grid container spacing={6}>
         <Grid item md={12}>
-          <div className="home-company">
+          <div className="home-recruiter">
 
-            <h1>Empresa</h1>
+            <h1>Recrutadores</h1>
 
           </div>
         </Grid>
@@ -23,4 +23,4 @@ const HomeCompany = ({ history }) => (
   </div>
 );
 
-export default HomeCompany;
+export default HomeRecruiter;

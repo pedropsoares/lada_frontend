@@ -88,7 +88,7 @@ const Login = ({ history }) => {
 
       console.log(remeb)
 
-      if (remeb == true) {
+      if (remeb === true) {
         localStorage.setItem('company', _id);
         localStorage.setItem('token-company', token);
 
@@ -110,11 +110,28 @@ const Login = ({ history }) => {
   const handleSubmitRec = async (event) => {
     event.preventDefault();
 
-    const response = await api.post('/api/recruiter/login', { email, passwordRecruiter })
+    try {
+      const response = await api.post('/api/recruiter/login', { email, passwordRecruiter })
+      const { token, _id } = response.data;
 
-    const { _id, name } = response.data.recruiter;
 
-    console.log(_id, name)
+      if (remeb === true) {
+        localStorage.setItem('recruiter', _id);
+        localStorage.setItem('token-recruiter', token);
+
+        history.push('/recruiter')
+      } else {
+        sessionStorage.setItem('recruiter', _id);
+        sessionStorage.setItem('token-recruiter', token);
+
+        history.push('/recruiter')
+      }
+
+    } catch (e) {
+      alert('login ou senha sem conrrespondencia!')
+
+      console.log(e);
+    }
   }
 
 
@@ -233,7 +250,7 @@ const Login = ({ history }) => {
                         onChange={event => setPasswordRecruiter(event.target.value)}
                       />
                       <FormControlLabel
-                        control={<Checkbox value="remember" color="primary" id="check" />}
+                        control={<Checkbox checked={remeb} onClick={Change} value="remember" color="primary" name="remeb" />}
                         label="Remember me"
                       />
                       <Button

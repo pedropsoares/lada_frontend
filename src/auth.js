@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-const PrivateRoutes = props => {
-  const isAuthL = !!localStorage.getItem('token-company');
-  const isAuthS = !!sessionStorage.getItem('token-company');
+export const CompanyRoutes = props => {
+  const companyIsAuthL = !!localStorage.getItem('token-company');
+  const companyIsAuthS = !!sessionStorage.getItem('token-company');
 
-  if (isAuthL) {
+  if (companyIsAuthL) {
     return <Route {...props}/>
-  } else if (!isAuthL) {
-    if (isAuthS) {
+  } else if (!companyIsAuthL) {
+    if (companyIsAuthS) {
     return <Route {...props}/>
     } else {
       return <Redirect to='/login'/>
@@ -16,5 +16,18 @@ const PrivateRoutes = props => {
   }
 
 }
+export const RecruiterRoutes = props => {
+  const companyIsAuthL = !!localStorage.getItem('token-recruiter');
+  const companyIsAuthS = !!sessionStorage.getItem('token-recruiter');
 
-export default PrivateRoutes;
+  if (companyIsAuthL) {
+    return <Route {...props}/>
+  } else if (!companyIsAuthL) {
+    if (companyIsAuthS) {
+    return <Route {...props}/>
+    } else {
+      return <Redirect to='/login'/>
+    }
+  }
+
+}
