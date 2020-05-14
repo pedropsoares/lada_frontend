@@ -1,0 +1,14 @@
+.logo img{
+  width: 100px;
+  margin-right: 80px;
+}
+
+.quit button{
+  padding-right: 185px;
+  width: 300px;
+  text-align: center;
+}
+
+.icon-quit {
+  margin-right: 35px;
+}
