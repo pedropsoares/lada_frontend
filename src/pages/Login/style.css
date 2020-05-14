@@ -29,11 +29,11 @@ body {
   background: #FFFF;
 }
 
-.MuiAppBar-colorPrimary {
+.box .MuiAppBar-colorPrimary {
   background-color: rgba(255, 255, 255, 0) !important;
 }
 
-span.MuiTabs-indicator {
+.box span.MuiTabs-indicator {
   background-color: #8A29BE !important;
 }
 
@@ -42,10 +42,10 @@ button.sign-in {
   height: 60px;
 }
 
-.MuiTabs-flexContainer button {
-  background: #FFFF !important;
+.box .MuiTabs-flexContainer button {
+  background: rgba(255, 255, 255, 0) !important;
   border: 0;
-  color: #8A29BE !important;
+  color: #8A29BE ;
   font-size: 34px !;
   font-weight: bold;
 }
@@ -54,13 +54,13 @@ button.sign-in {
   box-shadow: none !important;
 }
 
-Link {
+a {
   text-decoration: none;
   color: #8A29BE;
   transition: opacity 0.2s;
 
 }
 
-Link:hover {
+a:hover {
   opacity: 0.8;
 }
