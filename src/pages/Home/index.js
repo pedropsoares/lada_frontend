@@ -1,5 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
+import { Link } from 'react-router-dom';
 
 import Button from '@material-ui/core/Button';
 
@@ -47,7 +48,7 @@ const Home = ({ history }) => (
               Traga sua empresa pro Lada
             </p>
 
-            <a href="/login">Cadastre-se</a>
+            <Link to="/register">Cadastre-se</Link>
           </div>
 
         </div>
