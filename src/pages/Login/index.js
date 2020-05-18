@@ -84,9 +84,10 @@ const Login = ({ history }) => {
     try {
       const response = await api.post('/api/company/login', { cnpj, password })
 
-      const { token, _id } = response.data;
+      const { token } = response.data;
+      const { _id } = response.data.company;
 
-      console.log(remeb)
+      console.log(_id)
 
       if (remeb === true) {
         localStorage.setItem('company', _id);
@@ -188,7 +189,7 @@ const Login = ({ history }) => {
                       />
                       <FormControlLabel
                         control={<Checkbox checked={remeb} onClick={Change} value="remember" color="primary" name="remeb" />}
-                        label="Remember me"
+                        label="Mantenha-se conectado"
                       />
                       <Button
                         className="sign-in"
@@ -251,7 +252,7 @@ const Login = ({ history }) => {
                       />
                       <FormControlLabel
                         control={<Checkbox checked={remeb} onClick={Change} value="remember" color="primary" name="remeb" />}
-                        label="Remember me"
+                        label="Mantenha-se conectado"
                       />
                       <Button
                         className="sign-in"

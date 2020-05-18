@@ -1,22 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 import logo from '../../assets/Lada.svg'
+import camera from '../../assets/camera.svg'
+
+import api from '../../services/api';
 
 import './style.css';
 
 const Register = ({ history }) => {
+
   const [name, setName] = useState('');
   const [cnpj, setCnpj] = useState('');
   const [langs, setLangs] = useState('');
   const [techs, setTechs] = useState('');
   const [password, setPassword] = useState('');
   const [bio, setBio] = useState('');
+  const [logoCompany, setLogoCompany] = useState(null);
 
-  const handleSubmit = () => {
+  const preview = useMemo(() => {
+    return logoCompany ? URL.createObjectURL(logoCompany) : null;
+  }, [logoCompany])
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+
+
+    try {
+      const data = new FormData();
+
+      data.append('name', name);
+      data.append('cnpj', cnpj);
+      data.append('langs', langs);
+      data.append('techs', techs);
+      data.append('password', password)
+      data.append('bio', bio);
+      data.append('logoCompany', logoCompany);
+
+      await api.post('/api/company', data);
+
+      alert('cadastro realizado com sucesso!');
+
+      history.push('/login');
+
+    } catch (e) {
+      console.log({ e })
+    }
 
   }
 
@@ -24,7 +57,7 @@ const Register = ({ history }) => {
     <div className="register-container">
       <Grid container spacing={12}>
         <Grid item md={12}>
-          <div className="logo">
+          <div className="logo-register ">
             <img src={logo} alt="" />
           </div>
         </Grid>
@@ -115,6 +148,15 @@ const Register = ({ history }) => {
                       onChange={event => setBio(event.target.value)}
                     />
                   </div>
+
+                  <label
+                    id="logoCompany"
+                    style={{ backgroundImage: `url(${preview})` }}
+                    className={logoCompany ? 'has-logoCompany' : ''}
+                  >
+                    <input type="file" onChange={event => setLogoCompany(event.target.files[0])} />
+                    <img src={camera} alt="Select img" />
+                  </label>
 
                 </div>
 

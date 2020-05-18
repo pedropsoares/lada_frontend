@@ -134,7 +134,7 @@ const PersistentDrawerLeft = ({ history }) => {
         }}
       >
         <div className={classes.drawerHeader}>
-          <Typography className="logo" variant="h6" noWrap>
+          <Typography className="logo-bar" variant="h6" noWrap>
             <img src={logo} alt="" />
           </Typography>
           <IconButton onClick={handleDrawerClose}>

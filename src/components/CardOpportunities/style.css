@@ -1,0 +1,15 @@
+.root {
+  max-width: 300px;
+}
+
+.title-techs-langs strong{
+  display: flex;
+}
+
+.title-techs-langs span{
+  display: flex;
+}
+
+.comp-city span{
+  display: flex;
+}

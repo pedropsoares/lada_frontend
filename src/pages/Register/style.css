@@ -3,7 +3,7 @@
   margin-top: 80px;
 }
 
-.logo {
+.logo-register {
   margin-left: 90px;
 }
 
@@ -33,11 +33,37 @@ Button.sign-up {
   font-weight: bold;
 }
 
-.bio fieldset{
-  width: 500px;
+.bio {
+  margin-bottom: 20px;
+}
+
+.bio TextField{
   height: 80px;
 }
 /* .bio input{
   width: 500px;
   height: 80px;
 } */
+
+label#logoCompany {
+  margin-bottom: 20px;
+  border: 1px dashed #ddd;
+  cursor: pointer;
+  height: 220px;
+  width: 190px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+label#logoCompany input {
+  display: none;
+}
+
+label#logoCompany.has-logoCompany {
+  border: 0;
+}
+
+label#logoCompany.has-logoCompany img{
+  display: none;
+}

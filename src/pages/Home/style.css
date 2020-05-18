@@ -20,7 +20,7 @@ h1 {
   margin-bottom: 80px;
 }
 
-p {
+.content p {
   font-size: 30px;
 }
 
@@ -44,7 +44,8 @@ p {
   text-align: right;
 }
 .singUp p{
-  margin-bottom: 80px;
+  font-size: 30px;
+  margin-bottom: 80px !important;
 }
 
 .singUp a{
