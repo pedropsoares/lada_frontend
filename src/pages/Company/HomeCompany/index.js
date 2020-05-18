@@ -35,7 +35,7 @@ const HomeCompany = ({ history }) => {
       <div id="cards">
         <ul>
           {opportunities.length > 0 && opportunities.map(opportunity => (
-            <li key={_id} className="opportunityIntem">
+            <li className="opportunityIntem">
               <CardOpportunities
                 {...opportunity}
               />
