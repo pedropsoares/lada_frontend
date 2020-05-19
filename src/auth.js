@@ -1,33 +1,27 @@
-import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+export const TOKEN_COMPANY = "@company-Token";
+export const TOKEN_RECRUITER = "@recruiter-Token";
 
-export const CompanyRoutes = props => {
-  const companyIsAuthL = !!localStorage.getItem('token-company');
-  const companyIsAuthS = !!sessionStorage.getItem('token-company');
 
-  if (companyIsAuthL) {
-    return <Route {...props}/>
-  } else if (!companyIsAuthL) {
-    if (companyIsAuthS) {
-    return <Route {...props}/>
-    } else {
-      return <Redirect to='/login'/>
-    }
-  }
+export const getToken = (isCompany) => {
+  const tokenKey = isCompany ? TOKEN_COMPANY : TOKEN_RECRUITER;
 
-}
-export const RecruiterRoutes = props => {
-  const companyIsAuthL = !!localStorage.getItem('token-recruiter');
-  const companyIsAuthS = !!sessionStorage.getItem('token-recruiter');
+  return localStorage.getItem(tokenKey) || sessionStorage.getItem(tokenKey);
+};
 
-  if (companyIsAuthL) {
-    return <Route {...props}/>
-  } else if (!companyIsAuthL) {
-    if (companyIsAuthS) {
-    return <Route {...props}/>
-    } else {
-      return <Redirect to='/login'/>
-    }
-  }
+export const getAuthToken = () => getToken() || getToken(true);
 
-}
+export const isAuth = () => getAuthToken() !== null;
+
+export const setAuthToken = (token, stayConnected, isCompany) => {
+  const tokenKey = isCompany ? TOKEN_COMPANY : TOKEN_RECRUITER;
+  const storage = stayConnected ? localStorage : sessionStorage;
+
+  storage.setItem(tokenKey, token);
+};
+
+export const logout = () => {
+  localStorage.removeItem(TOKEN_COMPANY);
+  localStorage.removeItem(TOKEN_RECRUITER);
+  sessionStorage.removeItem(TOKEN_COMPANY);
+  sessionStorage.removeItem(TOKEN_RECRUITER);
+};

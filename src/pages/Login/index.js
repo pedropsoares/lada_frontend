@@ -16,6 +16,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Button from '@material-ui/core/Button';
 
+import { setAuthToken } from '../../auth';
+
 import api from '../../services/api'
 
 import logo from '../../assets/Lada.svg'
@@ -67,39 +69,18 @@ const Login = ({ history }) => {
   const [email, setEmail] = useState('');
   const [passwordRecruiter, setPasswordRecruiter] = useState('');
 
-  const [state, setState] = React.useState({
-    remeb: false,
-  });
-
-  const Change = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
-
-  const { remeb } = state;
-
+  const [remember, setRemember] = React.useState(false);
 
   const handleSubmitComp = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await api.post('/api/company/login', { cnpj, password })
+      const { data } = await api.post('/api/company/login', { cnpj, password })
 
-      const { token } = response.data;
-      const { _id } = response.data.company;
+      setAuthToken(data.token, remember, true);
 
-      console.log(_id)
+      history.push('/company')
 
-      if (remeb === true) {
-        localStorage.setItem('company', _id);
-        localStorage.setItem('token-company', token);
-
-        history.push('/company')
-      } else {
-        sessionStorage.setItem('company', _id);
-        sessionStorage.setItem('token-company', token);
-
-        history.push('/company')
-      }
     } catch (e) {
       alert('login ou senha sem conrrespondencia!')
 
@@ -112,21 +93,11 @@ const Login = ({ history }) => {
     event.preventDefault();
 
     try {
-      const response = await api.post('/api/recruiter/login', { email, passwordRecruiter })
-      const { token, _id } = response.data;
+      const { data } = await api.post('/api/recruiter/login', { email, passwordRecruiter })
 
+      setRemember(data.token, remember)
 
-      if (remeb === true) {
-        localStorage.setItem('recruiter', _id);
-        localStorage.setItem('token-recruiter', token);
-
-        history.push('/recruiter')
-      } else {
-        sessionStorage.setItem('recruiter', _id);
-        sessionStorage.setItem('token-recruiter', token);
-
-        history.push('/recruiter')
-      }
+      history.push('/recruiter')
 
     } catch (e) {
       alert('login ou senha sem conrrespondencia!')
@@ -188,7 +159,7 @@ const Login = ({ history }) => {
                         onChange={event => setPassword(event.target.value)}
                       />
                       <FormControlLabel
-                        control={<Checkbox checked={remeb} onClick={Change} value="remember" color="primary" name="remeb" />}
+                        control={<Checkbox checked={remember} onClick={() => setRemember(!remember)} color="primary" />}
                         label="Mantenha-se conectado"
                       />
                       <Button
@@ -251,7 +222,7 @@ const Login = ({ history }) => {
                         onChange={event => setPasswordRecruiter(event.target.value)}
                       />
                       <FormControlLabel
-                        control={<Checkbox checked={remeb} onClick={Change} value="remember" color="primary" name="remeb" />}
+                        control={<Checkbox checked={remember} onClick={() => setRemember(!remember)} color="primary" />}
                         label="Mantenha-se conectado"
                       />
                       <Button

@@ -15,11 +15,11 @@ const HomeCompany = ({ history }) => {
 
   useEffect(() => {
     const loadOpportunities = async () => {
-      const response = await api.get('/api/opportunitys')
+      const response = await api.get('/api/company/opportunities')
 
-      setOpportunities(response.data.opportunitys)
+      setOpportunities(response.data.opportunity)
 
-      console.log(response)
+      console.log(response.data)
     }
 
 
