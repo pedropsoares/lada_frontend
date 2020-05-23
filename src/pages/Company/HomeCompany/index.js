@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Grid from '@material-ui/core/Grid';
+import { TabPanel } from '../../../components/Guias'
 
 import api from '../../../services/api';
 
@@ -10,7 +10,7 @@ import './style.css';
 import { useState } from 'react';
 
 
-const HomeCompany = ({ history }) => {
+const HomeCompany = () => {
   const [opportunities, setOpportunities] = useState([]);
 
   useEffect(() => {
@@ -19,30 +19,33 @@ const HomeCompany = ({ history }) => {
 
       setOpportunities(response.data.opportunity)
 
-      console.log(response.data)
     }
-
-
     loadOpportunities();
   }, [])
 
+  let index = 0;
 
   return (
     <div className="home-comapany-container">
 
-      <PersistentDrawerLeft
-      />
-      <div id="cards">
-        <ul>
-          {opportunities.length > 0 && opportunities.map(opportunity => (
-            <li className="opportunityIntem">
-              <CardOpportunities
-                {...opportunity}
-              />
-            </li>
-          ))}
-        </ul>
-      </div>
+      <PersistentDrawerLeft/>
+
+      <TabPanel value={index} index={0}>
+        <div id="cards">
+          <ul>
+            {opportunities.length > 0 && opportunities.map(opportunity => (
+              <li className="opportunityIntem">
+                <CardOpportunities
+                  {...opportunity}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </TabPanel>
+      <TabPanel value={index} index={1}>
+        Item Two
+      </TabPanel>
 
     </div>
   );

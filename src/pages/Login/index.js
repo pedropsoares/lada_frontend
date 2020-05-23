@@ -15,8 +15,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Button from '@material-ui/core/Button';
+import { Redirect } from 'react-router-dom';
 
-import { setAuthToken } from '../../auth';
+import { isAuth, getToken, setAuthToken } from '../../auth';
 
 import api from '../../services/api'
 
@@ -84,7 +85,6 @@ const Login = ({ history }) => {
     } catch (e) {
       alert('login ou senha sem conrrespondencia!')
 
-      console.log(e);
     }
 
   }
@@ -95,17 +95,20 @@ const Login = ({ history }) => {
     try {
       const { data } = await api.post('/api/recruiter/login', { email, passwordRecruiter })
 
-      setRemember(data.token, remember)
+      setAuthToken(data.token, remember)
 
       history.push('/recruiter')
 
     } catch (e) {
       alert('login ou senha sem conrrespondencia!')
 
-      console.log(e);
     }
   }
 
+  if (isAuth()) {
+    const path = getToken(true) ? '/company' : '/recruiter'
+    return <Redirect to={path} />
+  }
 
   return (
     <Grid container spacing={6}>
@@ -194,7 +197,7 @@ const Login = ({ history }) => {
                     <Typography component="h1" variant="h5">
 
                     </Typography>
-                    <form className="form" noValidate onSubmit={handleSubmitRec}>
+                    <form className="form" onSubmit={handleSubmitRec}>
                       <TextField
                         variant="outlined"
                         margin="normal"

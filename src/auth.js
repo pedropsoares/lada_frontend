@@ -1,9 +1,8 @@
 export const TOKEN_COMPANY = "@company-Token";
 export const TOKEN_RECRUITER = "@recruiter-Token";
 
-
 export const getToken = (isCompany) => {
-  const tokenKey = isCompany ? TOKEN_COMPANY : TOKEN_RECRUITER;
+  const tokenKey = isCompany ?  TOKEN_COMPANY : TOKEN_RECRUITER ;
 
   return localStorage.getItem(tokenKey) || sessionStorage.getItem(tokenKey);
 };
@@ -18,6 +17,7 @@ export const setAuthToken = (token, stayConnected, isCompany) => {
 
   storage.setItem(tokenKey, token);
 };
+
 
 export const logout = () => {
   localStorage.removeItem(TOKEN_COMPANY);

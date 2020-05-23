@@ -3,6 +3,9 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { Redirect } from 'react-router-dom';
+
+import { isAuth, getToken } from '../../auth';
 
 import logo from '../../assets/Lada.svg'
 import camera from '../../assets/camera.svg'
@@ -12,7 +15,6 @@ import api from '../../services/api';
 import './style.css';
 
 const Register = ({ history }) => {
-
   const [name, setName] = useState('');
   const [cnpj, setCnpj] = useState('');
   const [langs, setLangs] = useState('');
@@ -48,9 +50,13 @@ const Register = ({ history }) => {
       history.push('/login');
 
     } catch (e) {
-      console.log({ e })
     }
 
+  }
+
+  if (isAuth()) {
+    const path = getToken(true) ? '/company' : '/recruiter'
+    return <Redirect to={path} />
   }
 
   return (
