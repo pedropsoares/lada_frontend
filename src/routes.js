@@ -1,11 +1,12 @@
 import React from 'react';
-import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 import { isAuth, getToken } from './auth';
 
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register'
 import HomeCompany from './pages/Company/HomeCompany'
+import HomeCompanyRecruiter from './pages/Company/HomeCompanyRecruiter'
 import HomeRecruiter from './pages/Recruiter/HomeRecruiter'
 
 
@@ -14,15 +15,14 @@ const RecruiterRoute = (props) => isAuth() && getToken() ? <Route {...props} /> 
 
 
 const Routes = () => (
-  <BrowserRouter>
     <Switch>
       <Route path="/" exact component={Home} />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
       <CompanyRoute path="/company" component={HomeCompany} />
+      <CompanyRoute path="/recruiters" component={HomeCompanyRecruiter} />
       <RecruiterRoute path="/recruiter" component={HomeRecruiter} />
     </Switch>
-  </BrowserRouter>
 );
 
 export default Routes;

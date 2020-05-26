@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TabPanel } from '../../../components/Guias'
 
 import api from '../../../services/api';
@@ -6,7 +6,6 @@ import api from '../../../services/api';
 import CardOpportunities from '../../../components/CardOpportunities';
 
 import './style.css';
-import { useState } from 'react';
 
 const HomeCompany = () => {
 
@@ -14,21 +13,20 @@ const HomeCompany = () => {
 
   useEffect(() => {
     const loadOpportunities = async () => {
-      const response = await api.get('/api/company/opportunities')
+      const { data } = await api.get('/api/company/opportunities')
 
-      setOpportunities(response.data.opportunity)
+
+      setOpportunities(data.opportunity)
 
     }
     loadOpportunities();
   }, [])
 
-  let index = 0;
-
   return (
     <div className="home-comapany-container">
 
 
-      <TabPanel value={index} index={0}>
+      <TabPanel>
         <div id="cards">
           <ul>
             {opportunities.length > 0 && opportunities.map(opportunity => (
@@ -40,9 +38,6 @@ const HomeCompany = () => {
             ))}
           </ul>
         </div>
-      </TabPanel>
-      <TabPanel value={index} index={1}>
-        Item Two
       </TabPanel>
 
     </div>
