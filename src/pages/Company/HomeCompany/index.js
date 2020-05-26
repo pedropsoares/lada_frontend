@@ -3,14 +3,13 @@ import { TabPanel } from '../../../components/Guias'
 
 import api from '../../../services/api';
 
-import PersistentDrawerLeft from '../../../components/PersistentDrawerLeft';
 import CardOpportunities from '../../../components/CardOpportunities';
 
 import './style.css';
 import { useState } from 'react';
 
-
 const HomeCompany = () => {
+
   const [opportunities, setOpportunities] = useState([]);
 
   useEffect(() => {
@@ -28,7 +27,6 @@ const HomeCompany = () => {
   return (
     <div className="home-comapany-container">
 
-      <PersistentDrawerLeft/>
 
       <TabPanel value={index} index={0}>
         <div id="cards">

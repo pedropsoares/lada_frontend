@@ -12,15 +12,12 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Button from '@material-ui/core/Button';
 
 import logo from '../../assets/Lada.svg'
+
+import Guias from '../Guias'
 
 import '../PersistentDrawerLeft/style.css';
 
@@ -84,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PersistentDrawerLeft = ({ history }) => {
+export default function PersistentDrawerLeft({ content }) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -143,12 +140,7 @@ const PersistentDrawerLeft = ({ history }) => {
         </div>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          <Guias />
         </List>
         <Divider />
         <List>
@@ -171,5 +163,3 @@ const PersistentDrawerLeft = ({ history }) => {
     </div>
   );
 }
-
-export default PersistentDrawerLeft;
