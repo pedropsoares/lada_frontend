@@ -8,9 +8,16 @@ import api from '../../../services/api'
 
 import './style.css'
 
-export default function HomeCompanyRecruiter() {
+const HomeCompanyRecruiter = () => {
   const [recruitersGet, setRecruitersGet] = useState([]);
   const [recruitersPost, setRecruitersPost] = useState([]);
+
+  const [i, setI] = useState([])
+
+  const updatePage = () => {
+    setI(i.push(1))
+    console.log(i)
+  }
 
   useEffect(() => {
     const loadRecruiters = async () => {
@@ -18,7 +25,8 @@ export default function HomeCompanyRecruiter() {
       setRecruitersGet(data.recruiters)
     }
     loadRecruiters();
-  }, [])
+  }, [i])
+
 
   api.post('/api/recruiters', recruitersPost)
 
@@ -52,7 +60,28 @@ export default function HomeCompanyRecruiter() {
                 new Promise((resolve) => {
                   setRecruitersPost(newData);
                   setTimeout(() => {
+                    resolve(updatePage());
+                  }, 600);
+                }),
+              onRowUpdate: (newData, oldData) =>
+                new Promise((resolve) => {
+                  setTimeout(() => {
                     resolve();
+                    if (oldData) {
+                      console.log(newData)
+                      setState((prevState) => {
+                        const data = [...prevState.data];
+                        data[data.indexOf(oldData)] = newData;
+                        return { ...prevState, data };
+                      });
+                    }
+                  }, 600);
+                }),
+              onRowDelete: (oldData) =>
+                new Promise((resolve) => {
+                  api.delete(`/api/recruiters/${oldData._id}`)
+                  setTimeout(() => {
+                    resolve(window.location.reload());
                   }, 600);
                 }),
             }}
@@ -63,3 +92,5 @@ export default function HomeCompanyRecruiter() {
     </div>
   );
 }
+
+export default HomeCompanyRecruiter;
