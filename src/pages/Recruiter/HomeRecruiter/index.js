@@ -8,8 +8,6 @@ import './style.css';
 const HomeRecruiter = ({ history }) => (
   <div className="home-container">
 
-    <PersistentDrawerLeft
-    />
 
       <Grid container spacing={6}>
         <Grid item md={12}>

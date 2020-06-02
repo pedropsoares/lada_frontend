@@ -1,14 +1,25 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import DeleteIcon from '@material-ui/icons/Delete';
+
+import HomeCompany from '../../pages/Company/HomeCompany';
+
+
+import api from '../../services/api';
 
 import './style.css';
 
-export default function CardOpportunities({ title, langs = [], techs = [], city, salary, descption }) {
+export default function CardOpportunities({ _id, title, langs = [], techs = [], city, salary, descption }) {
+
+  const deleteOpportunity = async () => {
+    await api.delete(`/api/opportunitys/${_id}`)
+
+    const relouder = {};
+  }
 
   return (
     <Card className="root">
@@ -35,7 +46,9 @@ export default function CardOpportunities({ title, langs = [], techs = [], city,
         </header>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button size="small" onClick={deleteOpportunity}>
+          <DeleteIcon />
+        </Button>
       </CardActions>
     </Card>
   );

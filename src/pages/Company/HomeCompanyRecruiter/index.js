@@ -12,21 +12,15 @@ const HomeCompanyRecruiter = () => {
   const [recruitersGet, setRecruitersGet] = useState([]);
   const [recruitersPost, setRecruitersPost] = useState([]);
 
-  const [i, setI] = useState([])
-
-  const updatePage = () => {
-    setI(i.push(1))
-    console.log(i)
-  }
-
   useEffect(() => {
     const loadRecruiters = async () => {
       const { data } = await api.get('/api/recruiters')
       setRecruitersGet(data.recruiters)
     }
     loadRecruiters();
-  }, [i])
+  }, [recruitersGet])
 
+  console.log(recruitersGet)
 
   api.post('/api/recruiters', recruitersPost)
 
@@ -60,7 +54,7 @@ const HomeCompanyRecruiter = () => {
                 new Promise((resolve) => {
                   setRecruitersPost(newData);
                   setTimeout(() => {
-                    resolve(updatePage());
+                    resolve();
                   }, 600);
                 }),
               onRowUpdate: (newData, oldData) =>
@@ -77,11 +71,11 @@ const HomeCompanyRecruiter = () => {
                     }
                   }, 600);
                 }),
-              onRowDelete: (oldData) =>
+                onRowDelete: (oldData) =>
                 new Promise((resolve) => {
                   api.delete(`/api/recruiters/${oldData._id}`)
                   setTimeout(() => {
-                    resolve(window.location.reload());
+                    resolve();
                   }, 600);
                 }),
             }}

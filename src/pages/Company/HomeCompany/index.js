@@ -8,19 +8,16 @@ import CardOpportunities from '../../../components/CardOpportunities';
 import './style.css';
 
 const HomeCompany = () => {
-
   const [opportunities, setOpportunities] = useState([]);
 
   useEffect(() => {
     const loadOpportunities = async () => {
       const { data } = await api.get('/api/company/opportunities')
-
-
       setOpportunities(data.opportunity)
 
     }
     loadOpportunities();
-  }, [])
+  }, [opportunities])
 
   return (
     <div className="home-comapany-container">

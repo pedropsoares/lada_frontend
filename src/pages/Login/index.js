@@ -82,6 +82,8 @@ const Login = ({ history }) => {
 
       history.push('/company')
 
+
+
     } catch (e) {
       alert('login ou senha sem conrrespondencia!')
 

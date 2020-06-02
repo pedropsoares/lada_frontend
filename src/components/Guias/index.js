@@ -5,7 +5,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { getToken } from '../../auth';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, Redirect, withRouter } from 'react-router-dom';
 
 import { useState } from 'react';
 
@@ -61,7 +61,7 @@ const Guias = ({ location }) => {
     setValue(inTab);
   };
 
-  useEffect(() => { handleChange(0) }, [path]);
+  useEffect(() => { handleChange() }, [path]);
 
   const tabOne = getToken(true) ? 'Vagas' : 'Devs';
   const tabTwTo = getToken(true) ? '/recruiters' : '';

@@ -13,3 +13,7 @@
 .comp-city span{
   display: flex;
 }
+
+.MuiCardActions-spacing {
+  padding: 50px;
+}
