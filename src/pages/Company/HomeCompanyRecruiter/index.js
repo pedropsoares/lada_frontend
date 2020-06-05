@@ -10,7 +10,6 @@ import './style.css'
 
 const HomeCompanyRecruiter = () => {
   const [recruitersGet, setRecruitersGet] = useState([]);
-  const [recruitersPost, setRecruitersPost] = useState([]);
 
   useEffect(() => {
     const loadRecruiters = async () => {
@@ -18,13 +17,9 @@ const HomeCompanyRecruiter = () => {
       setRecruitersGet(data.recruiters)
     }
     loadRecruiters();
-  }, [recruitersGet])
+  }, [])
 
-  console.log(recruitersGet)
-
-  api.post('/api/recruiters', recruitersPost)
-
-  const [state, setState] = useState({
+  const [state] = useState({
     columns: [
       { title: 'Nome', field: 'name' },
       { title: 'Senha', field: 'password' },
@@ -33,7 +28,7 @@ const HomeCompanyRecruiter = () => {
     ],
     data: [
 
-    ],
+    ]
   });
 
   return (
@@ -52,30 +47,39 @@ const HomeCompanyRecruiter = () => {
             editable={{
               onRowAdd: (newData) =>
                 new Promise((resolve) => {
-                  setRecruitersPost(newData);
+                  api.post('/api/recruiters', newData)
                   setTimeout(() => {
-                    resolve();
+                    const loadRecruiters = async () => {
+                      const { data } = await api.get('/api/recruiters')
+                      setRecruitersGet(data.recruiters)
+                    }
+                    resolve(loadRecruiters());
                   }, 600);
                 }),
               onRowUpdate: (newData, oldData) =>
                 new Promise((resolve) => {
+                  
+                  if (oldData) {
+                    console.log(newData)
+                    api.put('/api/recruiters', newData)
+                  }
                   setTimeout(() => {
-                    resolve();
-                    if (oldData) {
-                      console.log(newData)
-                      setState((prevState) => {
-                        const data = [...prevState.data];
-                        data[data.indexOf(oldData)] = newData;
-                        return { ...prevState, data };
-                      });
+                    const loadRecruiters = async () => {
+                      const { data } = await api.get('/api/recruiters')
+                      setRecruitersGet(data.recruiters)
                     }
+                    resolve(loadRecruiters());
                   }, 600);
                 }),
-                onRowDelete: (oldData) =>
+              onRowDelete: (oldData) =>
                 new Promise((resolve) => {
                   api.delete(`/api/recruiters/${oldData._id}`)
                   setTimeout(() => {
-                    resolve();
+                    const loadRecruiters = async () => {
+                      const { data } = await api.get('/api/recruiters')
+                      setRecruitersGet(data.recruiters)
+                    }
+                    resolve(loadRecruiters());
                   }, 600);
                 }),
             }}

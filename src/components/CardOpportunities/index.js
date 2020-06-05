@@ -6,9 +6,6 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-import HomeCompany from '../../pages/Company/HomeCompany';
-
-
 import api from '../../services/api';
 
 import './style.css';
@@ -18,7 +15,6 @@ export default function CardOpportunities({ _id, title, langs = [], techs = [], 
   const deleteOpportunity = async () => {
     await api.delete(`/api/opportunitys/${_id}`)
 
-    const relouder = {};
   }
 
   return (

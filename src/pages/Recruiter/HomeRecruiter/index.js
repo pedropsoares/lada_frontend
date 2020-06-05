@@ -1,24 +1,43 @@
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
+import React, { useEffect, useState } from 'react';
+import { TabPanel } from '../../../components/Guias'
 
-import PersistentDrawerLeft from '../../../components/PersistentDrawerLeft'
+import api from '../../../services/api';
+
+import CareDevs from '../../../components/CardDevs';
 
 import './style.css';
 
-const HomeRecruiter = ({ history }) => (
-  <div className="home-container">
+const HomeRecruiter = () => {
+  const [devs, setDevs] = useState([]);
 
+  useEffect(() => {
+    const loadDevs = async () => {
+      const { data } = await api.get('/api/dev')
+      setDevs(data)
 
-      <Grid container spacing={6}>
-        <Grid item md={12}>
-          <div className="home-recruiter">
+    }
+    loadDevs();
+  }, [])
 
-            <h1>Recrutadores</h1>
+  return (
+    <div className="home-comapany-container">
 
-          </div>
-        </Grid>
-      </Grid>
-  </div>
-);
+      <TabPanel>
+        <div id="cards">
+          <ul>
+            {devs.length > 0 && devs.map(dev => (
+              <li className="opportunityIntem">
+                <CareDevs
+                  {...dev}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </TabPanel>
+
+    </div>
+  );
+}
 
 export default HomeRecruiter;

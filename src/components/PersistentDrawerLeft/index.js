@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -15,11 +15,15 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Button from '@material-ui/core/Button';
 
+import api from '../../services/api';
+
+import Avatar from '@material-ui/core/Avatar'
+
 import logo from '../../assets/Lada.svg'
 
 import Guias from '../Guias'
 
-import '../PersistentDrawerLeft/style.css';
+import './style.css';
 
 const drawerWidth = 240;
 
@@ -99,6 +103,18 @@ export default function PersistentDrawerLeft({ content }) {
     sessionStorage.clear()
   }
 
+ /* const [company, setComapany] = useState([]);
+
+  useEffect(() => {
+    const loadCompany = async () => {
+      const { data } = await api.get('/api/company/home');
+      setComapany(data.company)
+
+      
+    }
+    loadCompany();
+  }, [])*/
+  
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -118,7 +134,9 @@ export default function PersistentDrawerLeft({ content }) {
           >
             <MenuIcon />
           </IconButton>
-
+            <div className="avatar-nav">
+            <Avatar alt="Remy Sharp" src="https://avatars0.githubusercontent.com/u/28923749?v=4" /> 
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer

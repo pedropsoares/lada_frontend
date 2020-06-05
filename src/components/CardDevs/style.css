@@ -1,0 +1,33 @@
+.root {
+  max-width: 250px;
+}
+
+.title-techs-langs strong{
+  display: flex;
+}
+
+.title-techs-langs span{
+  display: flex;
+}
+
+.name{
+  margin-top: -40px;
+}
+
+.lang-tech{
+  margin-top: 30px;
+}
+
+.avatar {
+  display: flex;
+  margin-left: 150px;
+  padding-left: 15px;
+}
+
+.MuiCardActions-spacing {
+  padding: 50px;
+}
+
+span {
+  padding: 3px;
+}
