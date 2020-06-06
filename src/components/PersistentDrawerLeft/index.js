@@ -15,6 +15,8 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Button from '@material-ui/core/Button';
 
+import { getToken } from '../../auth';
+
 import api from '../../services/api';
 
 import Avatar from '@material-ui/core/Avatar'
@@ -103,18 +105,18 @@ export default function PersistentDrawerLeft({ content }) {
     sessionStorage.clear()
   }
 
- /* const [company, setComapany] = useState([]);
+  const [company, setComapany] = useState([]);
+ 
+   useEffect(() => {
+     const loadCompany = async () => {
+       const { data } = await api.get('/api/company/home');
+       setComapany(data.company)
+ 
+       
+     }
+     loadCompany();
+   }, [])
 
-  useEffect(() => {
-    const loadCompany = async () => {
-      const { data } = await api.get('/api/company/home');
-      setComapany(data.company)
-
-      
-    }
-    loadCompany();
-  }, [])*/
-  
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -134,8 +136,8 @@ export default function PersistentDrawerLeft({ content }) {
           >
             <MenuIcon />
           </IconButton>
-            <div className="avatar-nav">
-            <Avatar alt="Remy Sharp" src="https://avatars0.githubusercontent.com/u/28923749?v=4" /> 
+          <div className="avatar-nav">
+            {getToken(true) && <Avatar alt={company.name} type="node" src={company.logo} />}
           </div>
         </Toolbar>
       </AppBar>
