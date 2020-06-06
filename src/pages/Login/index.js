@@ -79,10 +79,8 @@ const Login = ({ history }) => {
       const { data } = await api.post('/api/company/login', { cnpj, password })
 
       setAuthToken(data.token, remember, true);
-
+      window.location.reload(); 
       history.push('/company')
-
-
 
     } catch (e) {
       alert('login ou senha sem conrrespondencia!')
@@ -98,7 +96,7 @@ const Login = ({ history }) => {
       const { data } = await api.post('/api/recruiter/login', { email, passwordRecruiter })
 
       setAuthToken(data.token, remember)
-
+      window.location.reload(); 
       history.push('/recruiter')
 
     } catch (e) {
