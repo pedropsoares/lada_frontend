@@ -111,8 +111,8 @@ const Login = ({ history }) => {
   }
 
   return (
-    <Grid container spacing={6}>
-      <Grid item md={12}>
+    <Grid container spacing={12}>
+      <Grid item md={3} lg={12} xs={12}>
 
         <div className="login-container">
           <div className="paper">

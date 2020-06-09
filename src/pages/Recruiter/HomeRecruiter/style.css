@@ -1,0 +1,12 @@
+.selects {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.select-langs {
+  padding: 5px;
+}
+.select-techs {
+  padding: 5px;
+}

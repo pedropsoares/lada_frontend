@@ -1,5 +1,15 @@
-.root {
-  max-width: 250px;
+.dev-card {
+  min-height: 308px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .title-techs-langs strong{
@@ -10,8 +20,8 @@
   display: flex;
 }
 
-.name{
-  margin-top: -40px;
+.card-body {
+  margin-bottom: 20px;
 }
 
 .lang-tech{
@@ -20,8 +30,6 @@
 
 .avatar {
   display: flex;
-  margin-left: 150px;
-  padding-left: 15px;
 }
 
 .MuiCardActions-spacing {
@@ -30,4 +38,12 @@
 
 span {
   padding: 3px;
+}
+
+.card-content {
+  flex: 1 1 auto;
+}
+
+.max {
+  margin-top: 10px;
 }
