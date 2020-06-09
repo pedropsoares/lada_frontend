@@ -117,6 +117,7 @@ export default function PersistentDrawerLeft({ content }) {
      loadCompany();
    }, [])
 
+   console.log(company.logo)
   return (
     <div className={classes.root}>
       <CssBaseline />

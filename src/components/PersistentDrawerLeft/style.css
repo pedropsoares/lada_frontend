@@ -14,9 +14,17 @@
 }
 
 .avatar-nav {
-  margin-left: 94.5%;
+  
 }
 
+.PrivateTabIndicator-colorSecondary-158 {
+  background-color: #8A29BE !important;
+}
 .PrivateTabIndicator-colorSecondary-151 {
   background-color: #8A29BE !important;
+}
+
+.MuiToolbar-gutters {
+  display: flex;
+  justify-content: space-between;
 }
